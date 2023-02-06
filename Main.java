@@ -31,5 +31,6 @@ public class Main {
         System.out.println("");
         System.out.println("бабушка/ дедушка человека: " + child1);
         System.out.println(child1.getGrands());
+        System.out.println("Его братья/сестры: " + child1.getBrothersSisters(people));
     }
 }

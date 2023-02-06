@@ -10,12 +10,33 @@ public class Human {
     private Human father;
     private Human mather;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public Human getFather() {
+        return father;
+    }
+
+    public Human getMather() {
+        return mather;
+    }
+
     public Human(String name, String sex, int year, Human father, Human mather) {
         this.name = name;
         this.sex = sex;
         this.year = year;
         this.father = father;
         this.mather = mather;
+
 
     }
     /* выводит родителей человека*/
@@ -48,6 +69,17 @@ public class Human {
         grands.add(this.father.getParents());
         grands.add(this.mather.getParents());
         return  grands;
+    }
+    public List getBrothersSisters(List<Human> people){
+        List bs = new ArrayList<Human>();
+        for (int i = 0; i < people.size(); i++) {
+            if (!people.get(i).equals(this)) {
+                if (people.get(i).getParents().contains(this.father) || (people.get(i).getParents().contains(this.father))) {
+                    bs.add(people.get(i));
+                }
+            }
+        }
+        return bs;
     }
     @Override
     public String toString() {
