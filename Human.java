@@ -3,7 +3,7 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Human {
+class Human {
     private  String name;
     private String sex;
     private int year;
@@ -30,15 +30,57 @@ public class Human {
         return mather;
     }
 
-    public Human(String name, String sex, int year, Human father, Human mather) {
-        this.name = name;
-        this.sex = sex;
-        this.year = year;
-        this.father = father;
-        this.mather = mather;
+//    public Human(String name, String sex, int year, Human father, Human mather) {
+//        this.name = name;
+//        this.sex = sex;
+//        this.year = year;
+//        this.father = father;
+//        this.mather = mather;
+//    }
 
+    public static class EmployeeBuilder {
+        private  String name;
+        private String sex;
+        private int year;
+        private Human father;
+        private Human mather;
 
+        public EmployeeBuilder(String name) {
+            this.name = name;
+        }
+        public EmployeeBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+        public EmployeeBuilder setSex(String sex) {
+            this.sex = sex;
+            return this;
+        }
+        public EmployeeBuilder setYear(int year) {
+            this.year = year;
+            return this;
+        }
+        public EmployeeBuilder setFaather(Human father) {
+            this.father = father;
+            return this;
+        }
+        public EmployeeBuilder setmather(Human mather) {
+            this.mather = mather;
+            return this;
+        }
+        public Human build() {
+            return new Human(this);
+        }
     }
+
+    private Human(EmployeeBuilder employeeBuilder) {
+        name = employeeBuilder.name;
+        sex = employeeBuilder.sex;
+        year = employeeBuilder.year;
+        father = employeeBuilder.father;
+        mather = employeeBuilder.mather;
+    }
+
     /* выводит родителей человека*/
     public List getParents(){
         List parents = new ArrayList<Human>();
